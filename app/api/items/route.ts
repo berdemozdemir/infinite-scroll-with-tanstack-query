@@ -17,12 +17,12 @@ export async function GET(req: NextRequest) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const start = page * LIMIT;
-  const end = page + LIMIT;
+  const end = start + LIMIT;
 
   const data = items.slice(start, end);
 
   return NextResponse.json({
     data,
-    nextPage: data.length < items.length + LIMIT ? data.length + LIMIT : null,
+    nextPage: end < items.length ? page + 1 : null,
   });
 }
