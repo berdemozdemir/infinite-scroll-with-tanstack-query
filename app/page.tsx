@@ -1,3 +1,5 @@
+import { InfiniteListWithLoadMoreButton } from "@/components/InfiniteListWithLoadMoreButton";
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -13,11 +15,15 @@ export default function Home() {
         usage, and keeps the experience smooth for the user.
       </p>
 
-      <p className="text-center text-sm max-w-2xl text-gray-500">
+      <p className="text-center text-sm max-w-2xl text-gray-500 mb-10">
         - Below you can see two common ways to implement infinite loading: one
         with a “Load More” button, and the other with automatic loading
         triggered by scrolling.
       </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <InfiniteListWithLoadMoreButton />
+      </div>
     </div>
   );
 }
