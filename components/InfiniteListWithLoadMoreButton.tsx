@@ -2,6 +2,7 @@
 
 import { useFetchItemsInfiniteQuery } from '@/lib/client-queries';
 import { Item } from './Item';
+import { useEffect, useRef } from 'react';
 
 export const InfiniteListWithLoadMoreButton = () => {
   const {
@@ -12,6 +13,14 @@ export const InfiniteListWithLoadMoreButton = () => {
     fetchNextPage,
     isFetchingNextPage,
   } = useFetchItemsInfiniteQuery();
+
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isFetchingNextPage) {
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isFetchingNextPage]);
 
   if (status === 'pending')
     return <div className='text-center'>Loading...</div>;
@@ -32,13 +41,17 @@ export const InfiniteListWithLoadMoreButton = () => {
           </div>
         ))}
 
-        {isFetchingNextPage && <div>loading...</div>}
+        {isFetchingNextPage && (
+          <div ref={ref} className='mt-2 mb-6 text-center'>
+            loading...
+          </div>
+        )}
       </div>
 
       {hasNextPage && (
         <button
           onClick={() => fetchNextPage()}
-          className='cursor-pointer rounded-md border px-3 py-2 shadow-2xl transition-all hover:translate-x-0.5 hover:translate-y-0.5'
+          className='cursor-pointer rounded-md border px-3 py-2'
         >
           {isFetchingNextPage ? 'loading...' : 'Load More'}
         </button>
