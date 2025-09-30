@@ -1,6 +1,6 @@
 'use client';
 
-import { useFetchItemsInfiniteQuery } from '@/lib/client-queries';
+import { useFetchItemsInfiniteLoadmoreQuery } from '@/lib/client-queries';
 import { Item } from './Item';
 import { useEffect, useRef } from 'react';
 
@@ -12,7 +12,7 @@ export const InfiniteListWithLoadMoreButton = () => {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useFetchItemsInfiniteQuery();
+  } = useFetchItemsInfiniteLoadmoreQuery();
 
   const ref = useRef<HTMLDivElement | null>(null);
 

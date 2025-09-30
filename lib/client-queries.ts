@@ -13,10 +13,18 @@ export async function fetchItems({
   return await res.json();
 }
 
-export const useFetchItemsInfiniteQuery = () =>
+export const useFetchItemsInfiniteLoadmoreQuery = () =>
   useInfiniteQuery({
-    queryKey: ['items'],
+    queryKey: ['fetch-items-with-load-more-button'],
     queryFn: fetchItems,
     initialPageParam: 0,
-    getNextPageParam: (lastpage) => lastpage.nextPage,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+
+export const useFetchItemsInfiniteScrollquery = () =>
+  useInfiniteQuery({
+    queryKey: ['fetch-items-with-scroll'],
+    queryFn: fetchItems,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
   });
