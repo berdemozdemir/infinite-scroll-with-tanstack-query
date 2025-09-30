@@ -1,10 +1,5 @@
-import { Item } from '@/app/api/items/route';
 import { useInfiniteQuery } from '@tanstack/react-query';
-
-type ItemsResponse = {
-  data: Item[];
-  nextPage: number | null;
-};
+import { ItemsResponse } from './types';
 
 export async function fetchItems({
   pageParam,
