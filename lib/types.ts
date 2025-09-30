@@ -5,4 +5,5 @@ export type Item = (typeof ITEMS)[number];
 export type ItemsResponse = {
   data: Item[];
   nextPage: number | null;
+  totalCount: number;
 };

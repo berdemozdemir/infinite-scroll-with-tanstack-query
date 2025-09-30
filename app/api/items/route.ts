@@ -16,5 +16,6 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     data,
     nextPage: end < ITEMS.length ? page + 1 : null,
+    totalCount: ITEMS.length,
   });
 }
